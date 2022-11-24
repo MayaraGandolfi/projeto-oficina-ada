@@ -73,12 +73,12 @@ public class TestOficina {
         enderecoRepository.cadastra(endereco);
         enderecoRepository.cadastra(endereco1);
 
-        Repository<Cliente> clienteRepository = new Repository<Cliente>();
+        Repository<Cliente> clienteRepository = new Repository<>();
         clienteRepository.cadastra(cliente);
         clienteRepository.cadastra(cliente1);
         clienteRepository.imprimeCadastro();
 
-        Repository<Veiculo> veiculoRepository = new Repository<Veiculo>();
+        Repository<Veiculo> veiculoRepository = new Repository<>();
         veiculoRepository.cadastra(carro);
         veiculoRepository.cadastra(moto);
         veiculoRepository.cadastra(carro1);
@@ -103,7 +103,7 @@ public class TestOficina {
         CalculadoraDescontoParceiro calcDesconto = new CalculadoraDescontoParceiro();
 
 
-        Repository<Orcamento> orcametoRepository = new Repository();
+        Repository<Orcamento> orcametoRepository = new Repository<>();
         Orcamento orcamento = new Orcamento(carro1);
         orcamento.setValor(BigDecimal.valueOf(100.0));
         orcamento.setMecanico(mecanico);
