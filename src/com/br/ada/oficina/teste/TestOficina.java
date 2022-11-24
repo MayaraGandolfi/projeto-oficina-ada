@@ -1,12 +1,17 @@
 package com.br.ada.oficina.teste;
 
-import com.br.ada.oficina.businessobject.CalculadoraDescontoParceiro;
-import com.br.ada.oficina.businessobject.DescontoParceiroResidenteBairro;
-import com.br.ada.oficina.businessobject.DescontoParceiroSeguro;
+import com.br.ada.oficina.businessobject.desconto.CalculadoraDescontoParceiro;
+import com.br.ada.oficina.businessobject.desconto.DescontoParceiroResidenteBairro;
+import com.br.ada.oficina.businessobject.desconto.DescontoParceiroSeguro;
 import com.br.ada.oficina.businessobject.Reparos;
 import com.br.ada.oficina.enumeracao.EnumCorVeiculo;
-import com.br.ada.oficina.modelo.*;
+import com.br.ada.oficina.modelo.orcamento.Orcamento;
+import com.br.ada.oficina.modelo.pessoa.*;
+import com.br.ada.oficina.modelo.veiculo.Carro;
+import com.br.ada.oficina.modelo.veiculo.Moto;
+import com.br.ada.oficina.modelo.veiculo.Veiculo;
 import com.br.ada.oficina.repository.Repository;
+import com.br.ada.oficina.modelo.builder.EnderecoBuilder;
 
 import java.math.BigDecimal;
 
@@ -14,7 +19,15 @@ import java.math.BigDecimal;
 public class TestOficina {
     public static void main(String[] args) {
 
-        Endereco endereco = new Endereco("123", "apto1", "83965010");
+        Endereco endereco = new EnderecoBuilder()
+                .bairro("Afonso Pena")
+                .complemento("apto 12")
+                .estado("Paraná")
+                .rua("Rua Almirante Alexandrino")
+                .cep("06226436")
+                .numero("8")
+                .build();
+
 
         Cliente cliente = new Cliente("Maria", "09287869728");
         cliente.setEmail("maria@gmail.com");
@@ -28,7 +41,14 @@ public class TestOficina {
         carro.setModelo("Sandero");
         carro.setDescricaoProblema("Superaquecimento");
 
-        Endereco endereco1 = new Endereco("22", "casa", "83658001");
+        Endereco endereco1 = new EnderecoBuilder()
+                .bairro("Centro")
+                .complemento("casa")
+                .estado("Paraná")
+                .rua("Rua Nunes Machado")
+                .cep("83658001")
+                .numero("957")
+                .build();
 
         Cliente cliente1 = new Cliente("Joao", "58965698278");
         cliente1.setEmail("joao123@gmail.com");
@@ -48,6 +68,10 @@ public class TestOficina {
         carro1.setMarca("Fiat");
         carro1.setModelo("Mobi");
         carro1.setDescricaoProblema("Bateria fraca");
+
+        Repository<Endereco> enderecoRepository = new Repository<>();
+        enderecoRepository.cadastra(endereco);
+        enderecoRepository.cadastra(endereco1);
 
         Repository<Cliente> clienteRepository = new Repository<Cliente>();
         clienteRepository.cadastra(cliente);
@@ -74,7 +98,6 @@ public class TestOficina {
         Reparos reparos = new Reparos();
         reparos.reparar(carro);
         reparos.reparar(carro1);
-        reparos.reparar(moto);
         reparos.mostrarCarrosOficina();
 
         CalculadoraDescontoParceiro calcDesconto = new CalculadoraDescontoParceiro();

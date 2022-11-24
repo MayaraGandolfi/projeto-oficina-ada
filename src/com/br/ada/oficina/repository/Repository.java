@@ -1,7 +1,6 @@
 package com.br.ada.oficina.repository;
 
 import com.br.ada.oficina.businessobject.Report;
-import com.br.ada.oficina.modelo.Veiculo;
 
 import java.util.ArrayList;
 import java.util.List;

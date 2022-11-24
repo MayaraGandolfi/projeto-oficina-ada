@@ -1,6 +1,6 @@
 package com.br.ada.oficina.businessobject;
 
-import com.br.ada.oficina.modelo.Reparavel;
+import com.br.ada.oficina.modelo.veiculo.Reparavel;
 
 import java.util.ArrayList;
 import java.util.List;
